@@ -4,7 +4,6 @@
 from django.conf import settings
 from os.path import abspath, join, dirname
 
-
 DEBUG = False
 PORT = 8888
 
@@ -18,7 +17,6 @@ ADMINS = (
 PROJECT_DIR = abspath(dirname(__file__))
 STATIC_DIRECTORY = join(PROJECT_DIR, "static/")
 
-
 # Database config && 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'
 DATABASES = {
     'default': {
@@ -31,6 +29,10 @@ DATABASES = {
     }
 }
 
+# APPLICATIONS
+INSTALLED_APPS = (
+    'apps.auth',
+)
 
 # Settings locale
 try:
@@ -40,4 +42,4 @@ except:
 
 
 # CONFIGURE
-settings.configure(ADMINS=ADMINS, DATABASES=DATABASES)
+settings.configure(ADMINS=ADMINS, DATABASES=DATABASES, INSTALLED_APPS=INSTALLED_APPS)
