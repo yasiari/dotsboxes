@@ -1,0 +1,12 @@
+
+# python
+*.pyc
+
+
+#env
+env
+
+
+# text editors
+*~
+*.swp
