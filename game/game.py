@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*- 
 
+from settings import *
 from wsgiref import simple_server
 from tornado import wsgi
-from settings import *
 from urls import URLS
 
 
 # Handlers Application
-application = wsgi.WSGIApplication(URLS, **SETTINGS)
+application = wsgi.WSGIApplication(URLS, 
+
+    debug = DEBUG,
+    static_path = STATIC_DIRECTORY
+)
 
 
 if __name__ == "__main__":

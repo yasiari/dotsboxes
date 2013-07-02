@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 
-from handlers import (IndexHandler)
+from apps.core.handlers import (IndexHandler)
 
 
 URLS = (

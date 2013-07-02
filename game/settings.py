@@ -1,17 +1,43 @@
 # -*- coding: utf-8 -*- 
 
+# django settings must be called before importing models
+from django.conf import settings
 from os.path import abspath, join, dirname
 
 
-DEBUG = True
-PORT = 6969
+DEBUG = False
+PORT = 8888
+
+
+ADMINS = (
+    
+    ('yasar icli', 'yasaricli@gmail.com'),   
+)
+
 
 PROJECT_DIR = abspath(dirname(__file__))
 STATIC_DIRECTORY = join(PROJECT_DIR, "static/")
 
 
-SETTINGS = dict(
-    
-    debug = DEBUG,
-    static_path = STATIC_DIRECTORY,
-)
+# Database config && 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'game.db',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+
+# Settings locale
+try:
+    from settings_locale import *
+except:
+    pass
+
+
+# CONFIGURE
+settings.configure(ADMINS=ADMINS, DATABASES=DATABASES)
