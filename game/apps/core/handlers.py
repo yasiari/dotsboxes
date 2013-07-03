@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*- 
 
-from tornado.web import RequestHandler
+from apps.core.base_handlers import GameRequestHandler
 
-
-class IndexHandler(RequestHandler):
+class IndexHandler(GameRequestHandler):
     def get(self):
-        self.render("index.html")
+        self.render_to_response("index.html", {})
 
-
-class CssUiHandler(RequestHandler):
+class CssUiHandler(GameRequestHandler):
     def get(self):
-        self.render("css_ui.html")
+        self.render_to_response("css_ui.html", {})

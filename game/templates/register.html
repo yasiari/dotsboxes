@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block htmlid %}Register{% end %}
+
+{% block Surface %}
+    <div class="account register">
+        <form id="RegisterForm" action="." method="POST">
+            <ul class="form">
+                {{ register_form.as_ul() }}
+                <a href="#buttons" class="smallbtn4" data-tip=".smallbtn4">Register</a>
+            </ul>
+        </form>
+    </div>
+{% end %}

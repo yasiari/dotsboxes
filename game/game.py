@@ -12,6 +12,7 @@ application = wsgi.WSGIApplication(URLS,
     debug = DEBUG,
     static_path = STATIC_PATH,
     template_path = TEMPLATE_PATH,
+    autoescape = AUTOESCAPE,
 )
 
 

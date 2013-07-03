@@ -17,6 +17,8 @@ ADMINS = (
 PROJECT_DIR = abspath(dirname(__file__))
 STATIC_PATH = join(PROJECT_DIR, "static/")
 TEMPLATE_PATH = join(PROJECT_DIR, "templates/")
+AUTOESCAPE = None
+
 
 # Database config && 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'
 DATABASES = {
@@ -32,10 +34,15 @@ DATABASES = {
 
 # APPLICATIONS
 INSTALLED_APPS = (
-    'apps.auth',
+    'apps.player',
 )
 
-AUTH_USER_MODEL = "apps.auth.User"
+CONTEXT_PROCESSORS = (
+    "apps.core.context_processors.core",
+    "apps.player.context_processors.player",
+)
+
+
 
 
 # Settings locale
@@ -50,7 +57,6 @@ CONF = dict(
     ADMINS=ADMINS, 
     DATABASES=DATABASES, 
     INSTALLED_APPS=INSTALLED_APPS,
-    AUTH_USER_MODEL = AUTH_USER_MODEL,
 )
 
 # CONFIGURE

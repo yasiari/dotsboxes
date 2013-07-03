@@ -5,10 +5,53 @@
 
 body { font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
 
-#gheight, #gwidth, #playercount{ width: 40px; } 
+/*
+* HEADER BASE STYLE 
+*/
+#Header { min-height:100px; }
 
-#GameArea { width:750px; margin:20px auto; }
-#GameArea > span { color: grey; font-size: 200%; font-style:italic; } 
+
+/*
+* SURFACE BASE STYLE 
+*/
+#Surface { width: 1024px; min-height:500px; margin:auto; }
+
+ul.form { overflow:hidden; }
+ul.form li { margin:0 0 10px 0; }
+ul.form li label { display:block; }
+ul.form li input { }
+
+div.account { width:700px; margin:0px auto; }
+div.account ul.form { }
+div.account ul.form li { width:300px; float:left; margin:0 0 0 5px; }
+div.account ul.form li label { margin:0 0 5px 0;  font-size:13px; display:none; }
+ul.form li input { border-radius:0px!important; }
+div.account ul.form li.button { width:75px; }
+div.account ul.form a { border-radius:0px!important; display:block; float:left; margin:3px 0 0 5px; font-size:23px; }
+
+div.register { width:310px; }
+div.register ul.form { }
+div.register ul.form li { float:none; }
+
+
+/*
+*
+* FOOTER BASE STYLE
+*/
+#Footer { }
+
+/*
+*
+* Login
+*/
+#LoginPage #Surface { }
+
+
+/*
+*
+* Game Base style
+*/
+#gheight, #gwidth, #playercount{ width: 40px; } 
 .dot { background-color: rgb(177, 176, 176); width: 10px; height:10px; } 
 .undot { background-color: grey !important; } 
 .selectablevert, .unselectablevert { width: 60px; height: 10px; cursor:pointer; } 

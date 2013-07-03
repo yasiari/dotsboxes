@@ -4,21 +4,20 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.hashers import (check_password, make_password)
 
-
-class User(models.Model):
+class Player(models.Model):
     """
-        Users Model 
+        Player Model 
     """
-    username = models.CharField("Username", max_length=30, unique=True)
-    password = models.CharField("password", max_length=128)
+    playername = models.CharField(u"Player", max_length=30, unique=True)
+    password = models.CharField(u"Password", max_length=128)
     email = models.EmailField("Email", blank=True)
-    is_active = models.BooleanField("Active", default=True)
-    date_joined = models.DateTimeField("Date Joined", default=timezone.now)
-    last_login = models.DateTimeField("last login", default=timezone.now)
+    is_active = models.BooleanField(u"Active", default=True)
+    date_joined = models.DateTimeField(u"Date Joined", default=timezone.now)
+    last_login = models.DateTimeField(u"Last login", default=timezone.now)
 
     class Meta:
-        app_label = "auth"
-        db_table = "user"
+        app_label = "player"
+        db_table = "player"
 
     def __unicode__(self):
         return u"%s" %(self.username)
@@ -31,12 +30,12 @@ class User(models.Model):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User)
+    player = models.ForeignKey(Player)
     first_name = models.CharField("First Name", max_length=30, blank=True)
     last_name = models.CharField("Last Name", max_length=30, blank=True)
 
     class Meta:
-        app_label = "auth"
+        app_label = "player"
         db_table = "profile"
 
     def __unicode__(self):

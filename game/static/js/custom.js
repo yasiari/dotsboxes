@@ -5,6 +5,25 @@
 
 jQuery(function() {
 
+    new Page({
+    
+        // METHODS
 
-    // custom functions
+    }).Is("*", function(pagename, methods) {
+    
+
+    }) ("IndexPage", function(pagename, methods) { 
+    
+    
+    }) ("LoginPage", function(pagename, methods) {
+    
+        // Backbone LoginView
+        new APP.Views.LoginView();
+
+    }) ("RegisterPage", function(pagename, methods) {
+    
+     
+        // Backbone LoginView
+        new APP.Views.RegisterView();
+    });
 });

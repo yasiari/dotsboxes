@@ -1,20 +1,15 @@
-
 /*
 *
 * Game Object new Game(area).start(player_count, )
 */
-
 var Game = function(area, players) {
 
     var table;
     var turn;
-    var Player_Colors;
     var layout;
-
 
     var playercount = parseInt(players.length);
     var Players = players;
-
 
     this.start = function(height, width){
 	    

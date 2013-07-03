@@ -1,3 +1,14 @@
 {% extends "base.html" %}
 
+{% block htmlid %}Login{% end %}
 
+{% block Surface %}
+    <div class="account login">
+        <form id="LoginForm" action="." method="POST">
+            <ul class="form">
+                {{ login_form.as_ul() }}
+                <a href="#buttons" class="smallbtn4" data-tip=".smallbtn4">Login</a>
+            </ul>
+        </form>
+    </div>
+{% end %}
