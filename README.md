@@ -1,4 +1,4 @@
-dotsboxs
+dotsboxes
 ========
 
 tornado websocket DotsAndBoxes game
