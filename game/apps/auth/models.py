@@ -3,7 +3,7 @@
 from django.db import models
 from django.utils import timezone
 
-class Account(models.Model):
+class User(models.Model):
     """
         Users Model 
     """
@@ -16,13 +16,13 @@ class Account(models.Model):
 
     class Meta:
         app_label = "auth"
-        db_table = "account"
+        db_table = "user"
 
     def __unicode__(self):
         return u"%s" %(self.username)
 
 class Profile(models.Model):
-    account = models.ForeignKey(Account)
+    user = models.ForeignKey(User)
     first_name = models.CharField("First Name", max_length=30, blank=True)
     last_name = models.CharField("Last Name", max_length=30, blank=True)
 

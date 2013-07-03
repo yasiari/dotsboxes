@@ -35,6 +35,9 @@ INSTALLED_APPS = (
     'apps.auth',
 )
 
+AUTH_USER_MODEL = "apps.auth.User"
+
+
 # Settings locale
 try:
     from settings_locale import *
@@ -42,5 +45,13 @@ except:
     pass
 
 
+CONF = dict(
+    
+    ADMINS=ADMINS, 
+    DATABASES=DATABASES, 
+    INSTALLED_APPS=INSTALLED_APPS,
+    AUTH_USER_MODEL = AUTH_USER_MODEL,
+)
+
 # CONFIGURE
-settings.configure(ADMINS=ADMINS, DATABASES=DATABASES, INSTALLED_APPS=INSTALLED_APPS)
+settings.configure(**CONF)
