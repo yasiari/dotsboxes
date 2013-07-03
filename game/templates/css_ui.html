@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block Surface %}
+
+    <section id="buttons">
+		<div id="container">
+		    <h1 class="title"><span>Buttons</span></h1>
+		    <h3><code>.bigbtn</code></h3>
+		    
+		    <div id="btn">
+		        <a href="#buttons" class="bigbtn" data-tip=".bigbtn">Button</a>
+		        <a href="#buttons" class="bigbtn2" data-tip=".bigbtn2">Button</a>
+		        <a href="#buttons" class="bigbtn3" data-tip=".bigbtn3">Button</a>
+		        <a href="#buttons" class="bigbtn4" data-tip=".bigbtn4">Button</a>
+		    </div>
+		    
+		    <h3><code>.smallbtn</code></h3>
+		    
+		    <div id="btn">
+		        <a href="#buttons" class="smallbtn" data-tip=".smallbtn">Button</a>
+		        <a href="#buttons" class="smallbtn2" data-tip=".smallbtn2">Button</a>
+		        <a href="#buttons" class="smallbtn3" data-tip=".smallbtn3">Button</a>
+		        <a href="#buttons" class="smallbtn4" data-tip=".smallbtn4">Button</a>
+		    </div>
+		    
+		    <h3><code>.tagbtn</code></h3>
+		    
+		    <div id="btn">
+		        <a href="#buttons" class="tagbtn" data-tip=".tagbtn">Button</a>
+		        <a href="#buttons" class="tagbtn2" data-tip=".tagbtn2">Button</a>
+		        <a href="#buttons" class="tagbtn3" data-tip=".tagbtn3">Button</a>
+		        <a href="#buttons" class="tagbtn4" data-tip=".tagbtn4">Button</a>
+		    </div>
+		</div>
+    </section>
+
+    <section id="inputs">
+		<div id="container">
+		    <h1 class="title"><span>Inputs</span></h1>
+		    
+		    <h3><code>input[type=name]</code></h3>
+		    <div id="block">
+		        <input type="name" placeholder="name">
+		    </div>
+		    
+		    <h3><code>input[type=email]</code></h3>
+		    <div id="block">
+		        <input type="email" placeholder="email address">
+		    </div>
+		    
+		    <h3><code>input[type=password]</code></h3>
+		    <div id="block">
+		        <input type="password" placeholder="password">
+		    </div>
+		    
+		    <h3><code>textarea[type=text]</code></h3>
+		    <div id="block">
+		        <textarea type="text" placeholder="type whatever you want here..."></textarea>
+		    </div>
+		    
+		    <h3><code>.highlight</code></h3>
+		    <div id="block">
+		        <input type="text" class="highlight" placeholder="important!">
+		    </div>
+		    
+		    <h3><code>.error</code></h3>
+		    <div id="block">
+		        <input type="text" class="error" placeholder="uh-oh!">
+		    </div>
+		</div>
+    </section>
+{% end %}

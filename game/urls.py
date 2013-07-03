@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*- 
 
 
-from apps.core.handlers import (IndexHandler)
+from apps.core.handlers import (IndexHandler, CssUiHandler)
 
 
 URLS = (
 
-    (r"/", IndexHandler),    
+    # Cores APP url + handler
+    (r"/", IndexHandler),
+    (r"/css-ui/", CssUiHandler),
+
+    # Auth Urls + Handler
 )

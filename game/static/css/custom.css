@@ -3,8 +3,7 @@
 * linegame custom css style
 */
 
-body { padding:0px; margin:0px;  }
-
+body { font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
 
 #gheight, #gwidth, #playercount{ width: 40px; } 
 

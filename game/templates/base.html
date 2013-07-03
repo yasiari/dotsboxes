@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" id="{% block htmlid %}Base{% end %}Page">
     <head>
         <meta charset="utf-8"/>
+        <link rel="stylesheet" media="screen" href="/static/css/reset.css">
+        <link rel="stylesheet" media="screen" href="/static/css/game_ui.css">
         <link rel="stylesheet" media="screen" href="/static/css/custom.css">
 
         <script type="text/javascript" src="/static/js/libs/jquery.js"></script>
@@ -10,8 +12,8 @@
         <script type="text/javascript" src="/static/js/custom.js"></script>
     </head>
     <body>
-        <div id="GameArea">
-            {% block GameArea %}{% end %}
+        <div id="Surface">
+            {% block Surface %}{% end %}
         </div>
     </body>
  </html>
