@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.hashers import (check_password, make_password)
+
 
 class User(models.Model):
     """
@@ -20,6 +22,13 @@ class User(models.Model):
 
     def __unicode__(self):
         return u"%s" %(self.username)
+
+    def check_password(self, password):
+        return check_password(password, self.password)
+
+    def set_password(self, password):
+        self.password = make_password(password)
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User)
