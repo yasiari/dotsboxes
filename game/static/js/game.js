@@ -4,24 +4,22 @@
 * Game Object new Game(area).start(player_count, )
 */
 
-var Game = function(area) {
+var Game = function(area, players) {
 
-    var startbutton;
     var table;
     var turn;
-    var playercount;
     var Player_Colors;
     var layout;
-    var Player_Colors = ["red", "blue", "green", "yellow", "orange", "cyan"];
 
 
-    this.start = function(player_count, height, width){
+    var playercount = parseInt(players.length);
+    var Players = players;
+
+
+    this.start = function(height, width){
 	    
 	    turn = -1; //reset turns
 	    
-	    //get properties
-	    playercount = parseInt(player_count);
-
 	    var h = parseInt(height);
 	    var w = parseInt(width);
 
@@ -123,10 +121,12 @@ var Game = function(area) {
     		for(var j=0;j<=layout.maxY;j++){
     			if(BoxIsInLayout(2*i+1, 2*j+1)){
     				if(!is_taken(i, j) && is_surrounded(i, j)){
+                        var player = getPlayer(turn);
+
     					//box is suurounded but not taken
     					get_table_cell(2*i+1, 2*j+1)
     					.addClass("taken")
-    					.css("background-color", getplayercolor(turn))
+    					.css("background-color", player.color)
     					.data("playerId", turn);
     					did_something = true;
     				}
@@ -149,43 +149,48 @@ var Game = function(area) {
     	//set the hover color
     	data
     	.hover(function(){
-    		jQuery(this).css("background-color", getplayercolor(turn));
+
+            var player = getPlayer(turn);
+    		jQuery(this).css("background-color", player.color);
     	}, function(){
     		jQuery(this).removeAttr("style");
     	});
     	
-    	var scoreNode = jQuery("#scores").html("");
+    	var scoreNode = jQuery("#Scores").html("");
     
     	if(gameHasWinner(points)){
-    		scoreNode.append("The first place can no longer change. <br />");		
-    	} else {
-    		scoreNode.append("<br />");		
+            alert("Finish Game");    
     	}
     	
     	//update the player ranking
     	var ranking = makePlayerRanking(points, playercount);
-    	
     	var taken = 0;
-    	
+    
+
     	for(var i=0;i<ranking.length;i++){
     		for(var j=0;j<ranking[i].length;j++){
     			var player = ranking[i][j];
     			var score = points[player];
-    			var color = getplayercolor(player);
+    			var color = getPlayer(player).color
+
     			taken += score; 
-    			var node = jQuery("<span>").text((i+1).toString()+") Player "+(player+1)+" - "+score+" Boxes").css("background-color", color).width(200);
-    			scoreNode.append(
-    				node, 
-    				jQuery("<br />")
-    			);
-    			if(player == turn){node.css("font-weight", "bold");}
+
+                var score_player = jQuery("<div/>", {
+                
+                });
+
+    			var node = jQuery("<span>").html(getPlayer(player).username + " <b>" + score +"</b> Boxes").css("background-color", color);
+    			scoreNode.append(node);
+
+                // sort player 
+    			if(player == turn){
+                    node.css("font-weight", "bold");
+                };
     		}
     	}
     	
-    	scoreNode.append(
-    		jQuery("<span>").text(""+taken+"/"+(layout.length)+" Boxes occupied. ").width(200), 
-    		jQuery("<br />")
-    	);
+        var opened_box = jQuery("<span>").text(""+taken+"/"+(layout.length)+" Boxes occupied. ");
+    	scoreNode.append(opened_box);
     };
     
     /*
@@ -324,8 +329,8 @@ var Game = function(area) {
     /*
     	Get Player Colors
     */
-    var getplayercolor = function(i){
-    	return Player_Colors[i];
+    var getPlayer = function(i){
+    	return Players[i];
     };
     
     /*
