@@ -1,0 +1,17 @@
+/*
+*
+* linegame custom css style
+*/
+
+body { padding:0px; margin:0px;  }
+
+
+#gheight, #gwidth, #playercount{ width: 40px; } 
+
+#GameArea { width:750px; margin:20px auto; }
+#GameArea > span { color: grey; font-size: 200%; font-style:italic; } 
+.dot { background-color: black; width: 10px; height:10px; border-radius: 20px; } 
+.undot { background-color: grey !important; } 
+.selectablevert, .unselectablevert { width: 60px; height: 10px; } 
+.selectablehort, .unselectablehort { width: 10px; height: 60px; } 
+.selected{ background-color: black; } table { border-width: 0px; border-collapse:collapse; }

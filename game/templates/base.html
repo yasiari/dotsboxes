@@ -1,0 +1,17 @@
+<!DOCTYPEhtmlPUBLIC"-//W3C//DTDXHTML1.0Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="{% block htmlid %}Base{% end %}Page">
+    <head>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" media="screen" href="/static/css/custom.css">
+
+        <script type="text/javascript" src="/static/js/libs/jquery.js"></script>
+        <script type="text/javascript" src="/static/js/libs/underscore.js"></script>
+        <script type="text/javascript" src="/static/js/game.js"></script>
+        <script type="text/javascript" src="/static/js/custom.js"></script>
+    </head>
+    <body>
+        <div id="GameArea">
+            {% block GameArea %}{% end %}
+        </div>
+    </body>
+ </html>

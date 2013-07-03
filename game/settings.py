@@ -15,7 +15,8 @@ ADMINS = (
 
 
 PROJECT_DIR = abspath(dirname(__file__))
-STATIC_DIRECTORY = join(PROJECT_DIR, "static/")
+STATIC_PATH = join(PROJECT_DIR, "static/")
+TEMPLATE_PATH = join(PROJECT_DIR, "templates/")
 
 # Database config && 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'
 DATABASES = {

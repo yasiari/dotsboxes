@@ -10,7 +10,8 @@ from urls import URLS
 application = wsgi.WSGIApplication(URLS, 
 
     debug = DEBUG,
-    static_path = STATIC_DIRECTORY
+    static_path = STATIC_PATH,
+    template_path = TEMPLATE_PATH,
 )
 
 
