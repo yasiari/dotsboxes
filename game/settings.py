@@ -20,6 +20,10 @@ TEMPLATE_PATH = join(PROJECT_DIR, "templates/")
 AUTOESCAPE = None
 
 
+# Change setting_locale.py 
+COKKIE_SECRET = "61oETzKXQAGaYdkL1hEmGeJJFuYh7EQnp2XdTP1o"
+
+
 # Database config && 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'
 DATABASES = {
     'default': {

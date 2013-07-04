@@ -13,6 +13,7 @@ application = wsgi.WSGIApplication(URLS,
     static_path = STATIC_PATH,
     template_path = TEMPLATE_PATH,
     autoescape = AUTOESCAPE,
+    cookie_secret = COOKIE_SECRET,
 )
 
 

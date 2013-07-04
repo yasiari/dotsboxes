@@ -2,6 +2,22 @@
 
 from django.utils.importlib import import_module
 
+
+def request_data_field(request, form=None):
+    """
+        request arguments field
+
+        data = request_data_field(self.request, LoginForm)
+        form = LoginForm(data=data)
+    """
+    data = {}
+    if form:
+        fields = form().fields
+        for field in fields.keys():
+            data[field] = request.arguments[field][0]
+    return data
+
+
 def request_context():
     """
         CONTEXT_PROCESSORS REQUEST

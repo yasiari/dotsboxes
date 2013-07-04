@@ -20,7 +20,7 @@ class Player(models.Model):
         db_table = "player"
 
     def __unicode__(self):
-        return u"%s" %(self.username)
+        return u"%s" %(self.playername)
 
     def check_password(self, password):
         return check_password(password, self.password)
@@ -28,6 +28,10 @@ class Player(models.Model):
     def set_password(self, password):
         self.password = make_password(password)
 
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.password = make_password(self.password)
+        super(Player, self).save(*args, **kwargs)
 
 class Profile(models.Model):
     player = models.ForeignKey(Player)

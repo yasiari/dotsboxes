@@ -21,7 +21,7 @@ ul.form li { margin:0 0 10px 0; }
 ul.form li label { display:block; }
 ul.form li input { }
 
-div.account { width:700px; margin:0px auto; }
+div.account { width:725px; margin:0px auto; }
 div.account ul.form { }
 div.account ul.form li { width:300px; float:left; margin:0 0 0 5px; }
 div.account ul.form li label { margin:0 0 5px 0;  font-size:13px; display:none; }
@@ -32,6 +32,10 @@ div.account ul.form a { border-radius:0px!important; display:block; float:left; 
 div.register { width:310px; }
 div.register ul.form { }
 div.register ul.form li { float:none; }
+
+
+div.register .errorlist { font-size:13px; color:red; font-weight:bold; margin:10px 0 1px 1px; }
+div.login .errorlist { position:absolute; font-size:13px; color:red; margin:-20px 0 0 0; font-weight:bold; }
 
 
 /*
