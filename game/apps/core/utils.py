@@ -1,7 +1,23 @@
 # -*- coding: utf-8 -*- 
 
+from settings import TEMPLATE_PATH
+from tornado.template import Loader
 from django.utils.importlib import import_module
 
+
+def template_loader(template_name, ctx):
+    loader = Loader(TEMPLATE_PATH)
+    return loader.load(template_name).generate(**ctx)
+
+
+def get_or_None(model, **kwargs):
+    """
+        Easy enough to wrap into a function.
+    """
+    try:
+        return model.objects.get(**kwargs)
+    except model.DoesNotExist:
+        return None
 
 def request_data_field(request, form=None):
     """

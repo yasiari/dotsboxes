@@ -47,6 +47,12 @@ CONTEXT_PROCESSORS = (
 )
 
 
+STATUS_CODE_HTML = {
+
+    "404": "404.html",
+    "500": "500.html",
+}
+
 
 
 # Settings locale

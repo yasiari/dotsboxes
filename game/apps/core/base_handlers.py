@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*- 
 
-from tornado.web import RequestHandler
-from apps.core.utils import request_context, request_data_field
+from settings import STATUS_CODE_HTML
+from tornado.web import RequestHandler, ErrorHandler, HTTPError
+from apps.core.utils import request_context, request_data_field, template_loader
 from apps.player.models import Player
 
 
@@ -9,7 +10,23 @@ class GameRequestHandler(RequestHandler):
     """
         Base Game Handler Class
         in context render_to_response
+
+        write_error Production DEBUG False then  render STATUS_CODE_HTML html
     """
+    def write_error(self, status_code, **kwargs):
+        if self.settings.get("debug") is False:
+
+            ctx = {
+                "status_code": status_code,
+                "message": self._reason,
+            }
+            
+            template = template_loader(STATUS_CODE_HTML.get(str(status_code)), ctx)
+            self.finish(template)
+        
+        else:
+            super(GameRequestHandler, self).write_error(status_code, **kwargs)
+
     def render_to_response(self, template_name, context):
         ctx = request_context()
         context.update(ctx)
@@ -26,6 +43,19 @@ class GameRequestHandler(RequestHandler):
             return player
         return None
 
+
+
+class RequestErrorHandler(ErrorHandler, GameRequestHandler):
+    def prepare(self):
+        if self.settings.get("debug") is False:
+            ctx = {
+                "status_code": self._status_code
+            }
+
+            self.render_to_response(STATUS_CODE_HTML.get(str(self._status_code)), ctx)
+        else:
+            # debug true  
+            raise HTTPError(self._status_code)
 
 class BaseFormHandler(GameRequestHandler):
     """
@@ -49,6 +79,7 @@ class BaseFormHandler(GameRequestHandler):
         else:
             ctx["form"] = form
             self.render_to_response(self.template, ctx)
+
 
 
 class LoginRequireHandler(GameRequestHandler):
