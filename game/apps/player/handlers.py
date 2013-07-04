@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.base_handlers import GameRequestHandler
+from apps.core.base_handlers import SuccessRequireHandler
 from apps.player.forms import LoginForm, RegisterForm
 
-class LoginHandler(GameRequestHandler):
+class LoginHandler(SuccessRequireHandler):
 
     def get(self):
         ctx = {
@@ -14,7 +14,7 @@ class LoginHandler(GameRequestHandler):
     def post(self):
         pass
 
-class RegisterHandler(GameRequestHandler):
+class RegisterHandler(SuccessRequireHandler):
 
     def get(self):
         ctx = {

@@ -13,9 +13,19 @@ class GameRequestHandler(RequestHandler):
         context.update(ctx)
         self.render(template_name, **context)
 
+
 class LoginRequireHandler(GameRequestHandler):
     """
         Login Require Class Redirect not login
     """
-    pass
+    def prepare(self):
+        pass
+
+
+class SuccessRequireHandler(GameRequestHandler):
+    """
+        Success Require Class Redirect not login
+    """
+    def prepare(self):
+        pass
 
