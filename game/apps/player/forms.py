@@ -9,7 +9,7 @@ from apps.core.utils import get_or_None
 class AccountBaseForm(forms.Form):
 
     playername = forms.CharField(label="Player", max_length=30)
-    password = forms.CharField(label="Password", widget=forms.PasswordInput(), max_length=128)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(), max_length=128, min_length=6)
 
     def __init__(self, *args, **kwargs):
         super(AccountBaseForm, self).__init__(*args, **kwargs)

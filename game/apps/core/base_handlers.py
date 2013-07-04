@@ -2,6 +2,7 @@
 
 from settings import STATUS_CODE_HTML
 from tornado.web import RequestHandler, ErrorHandler, HTTPError
+from apps.player import authenticate
 from apps.core.utils import request_context, request_data_field, template_loader
 from apps.player.models import Player
 
@@ -36,13 +37,21 @@ class GameRequestHandler(RequestHandler):
     def is_authenticate(self):
         return self.get_current_player()
 
+    def login(self, playername=None, password=None):
+        auth = authenticate(playername=playername, password=password)
+        
+        if auth:
+            self.set_secure_cookie("player", playername)
+            self.redirect("/")
+        else:
+            self.clear_cookie("player")
+
     def get_current_player(self):
         playername = self.get_secure_cookie("player")
         if playername:
             player = Player.objects.get(playername=playername)
             return player
         return None
-
 
 
 class RequestErrorHandler(ErrorHandler, GameRequestHandler):
@@ -56,6 +65,7 @@ class RequestErrorHandler(ErrorHandler, GameRequestHandler):
         else:
             # debug true  
             raise HTTPError(self._status_code)
+
 
 class BaseFormHandler(GameRequestHandler):
     """
@@ -75,11 +85,10 @@ class BaseFormHandler(GameRequestHandler):
         
         if form.is_valid():
 
-            self.is_valid()
+            self.is_valid(data)
         else:
             ctx["form"] = form
             self.render_to_response(self.template, ctx)
-
 
 
 class LoginRequireHandler(GameRequestHandler):

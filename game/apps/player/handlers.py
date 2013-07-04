@@ -3,7 +3,6 @@
 from apps.core.base_handlers import ( SuccessRequireHandler, LoginRequireHandler,
                                      SuccessRequireFormHandler)
 from apps.player.forms import LoginForm, RegisterForm
-from apps.player import authenticate
 
 
 class LoginHandler(SuccessRequireFormHandler):
@@ -18,21 +17,18 @@ class LoginHandler(SuccessRequireFormHandler):
 
         self.render_to_response("login.html", ctx)
 
-    def is_valid(self):
-        playername = self.get_argument("playername", default=None)
-        password = self.get_argument("password", default=None)
-        
-        auth = authenticate(playername=playername, password=password)
-        
-        if auth:
-            self.set_secure_cookie("player", playername)
-            self.redirect("/")
-        else:
-            self.clear_cookie("player")
+    def is_valid(self, data):
+        playername = data.get("playername", None)
+        password = data.get("password", None)
+
+        # login
+        self.login(playername=playername, password=password)
 
 
 class RegisterHandler(SuccessRequireFormHandler):
-
+    """
+        Register And Login Form Handler
+    """
     template = "register.html"
     form = RegisterForm
 
@@ -42,10 +38,13 @@ class RegisterHandler(SuccessRequireFormHandler):
         }
         self.render_to_response("register.html", ctx)
 
+    def is_valid(self, data):
+        playername = data.get("playername", None)
+        password = data.get("password", None)
 
-    def is_valid(self):
-        pass
-
+        # login
+        self.login(playername=playername, password=password)
+        
 
 class LogoutHandler(LoginRequireHandler):
     def get(self):
