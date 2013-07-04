@@ -9,11 +9,11 @@
         Views: {}
     };
 
-    APP.Views.LoginView = Backbone.View.extend({
-        el: "#LoginPage",
+    APP.Views.SigninView = Backbone.View.extend({
+        el: "#SigninPage",
         events: {
         
-            "click #LoginButton": "login"
+            "click #SigninButton": "signin"
         },
         initialize: function() { this.render(); },
 
@@ -21,22 +21,22 @@
             this.$el.find("#id_playername").focus();
         },
 
-        login: function(e) {
+        signin: function(e) {
             e.preventDefault();
             var $this = jQuery(e.currentTarget);
-            var loginForm = jQuery("#LoginForm");
+            var signinForm = jQuery("#SigninForm");
             
             // submit form
-            loginForm.submit();
+            signinForm.submit();
         }
     });
 
 
-    APP.Views.RegisterView = Backbone.View.extend({
-        el: "#RegisterPage",
+    APP.Views.SignupView = Backbone.View.extend({
+        el: "#SignupPage",
         events: {
         
-            "click #RegisterButton": "register"
+            "click #SignupButton": "signup"
         },
 
         initialize: function() { this.render(); },
@@ -45,13 +45,13 @@
             this.$el.find("#id_playername").focus();
         },
 
-        register: function(e) {
+        signup: function(e) {
             e.preventDefault();
             var $this = jQuery(e.currentTarget);
-            var registerForm = jQuery("#RegisterForm");
+            var signupForm = jQuery("#SignupForm");
             
             // submit form
-            registerForm.submit();
+            signupForm.submit();
         }
 
     });

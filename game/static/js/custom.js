@@ -15,15 +15,14 @@ jQuery(function() {
     }) ("IndexPage", function(pagename, methods) { 
     
     
-    }) ("LoginPage", function(pagename, methods) {
+    }) ("SigninPage", function(pagename, methods) {
     
-        // Backbone LoginView
-        new APP.Views.LoginView();
+        // Backbone SigninView
+        new APP.Views.SigninView();
 
-    }) ("RegisterPage", function(pagename, methods) {
+    }) ("SignupPage", function(pagename, methods) {
     
-     
-        // Backbone LoginView
-        new APP.Views.RegisterView();
+        // Backbone SigninView
+        new APP.Views.SignupView();
     });
 });

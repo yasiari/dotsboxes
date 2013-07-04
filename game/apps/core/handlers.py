@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.base_handlers import GameRequestHandler, LoginRequireHandler
+from apps.core.base_handlers import GameRequestHandler, SigninRequireHandler
 
 
-class IndexHandler(LoginRequireHandler):
+class IndexHandler(SigninRequireHandler):
     def get(self):
         self.render_to_response("index.html", {})
 

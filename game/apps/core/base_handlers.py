@@ -37,12 +37,12 @@ class GameRequestHandler(RequestHandler):
     def is_authenticate(self):
         return self.get_current_player()
 
-    def login(self, playername=None, password=None):
+    def signin(self, playername=None, password=None, redirect_page="/"):
         auth = authenticate(playername=playername, password=password)
         
         if auth:
             self.set_secure_cookie("player", playername)
-            self.redirect("/")
+            self.redirect(redirect_page)
         else:
             self.clear_cookie("player")
 
@@ -91,27 +91,27 @@ class BaseFormHandler(GameRequestHandler):
             self.render_to_response(self.template, ctx)
 
 
-class LoginRequireHandler(GameRequestHandler):
+class SigninRequireHandler(GameRequestHandler):
     """
-        Login Require Class Redirect not login
+        Signin Require Class Redirect not signin
     """
     def prepare(self):
         if self.is_authenticate is None:
-            self.redirect("/login/")
+            self.redirect("/signin/")
 
 
 class SuccessRequireHandler(GameRequestHandler):
     """
-        Success Require Class Redirect not login
+        Success Require Class Redirect not signin
     """
     def prepare(self):
         if not self.is_authenticate is None:
             return self.redirect("/")
 
 
-class LoginRequireFormHandler(LoginRequireHandler, BaseFormHandler):
+class SigninRequireFormHandler(SigninRequireHandler, BaseFormHandler):
     """
-        FormHandler Login Required
+        FormHandler Signin Required
     """
     pass
 

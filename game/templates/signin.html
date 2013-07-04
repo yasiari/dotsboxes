@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block htmlid %}Signin{% end %}
+
+{% block Surface %}
+    <div class="account signin">
+        <div class="logo-mogo">
+            <img src="/static/img/logo.png">
+        </div>
+        <form id="SigninForm" action="." method="POST">
+            <h1 class="title">
+                <span>Player Sign In</span>
+            </h1>
+            <ul class="form">
+                {{ form.as_ul() }}
+                <a class="signup" href="/signup/">Can't access your account?</a>
+                <a href="#buttons" class="smallbtn4" id="SigninButton">Sign In</a>
+            </ul>
+        </form>
+    </div>
+{% end %}

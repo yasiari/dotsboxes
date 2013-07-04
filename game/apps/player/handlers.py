@@ -1,52 +1,63 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.base_handlers import ( SuccessRequireHandler, LoginRequireHandler,
+from apps.core.base_handlers import ( SuccessRequireHandler, SigninRequireHandler,
                                      SuccessRequireFormHandler)
-from apps.player.forms import LoginForm, RegisterForm
+from apps.player.forms import SigninForm, SignupForm
+from apps.player.models import Player
 
 
-class LoginHandler(SuccessRequireFormHandler):
+class SigninHandler(SuccessRequireFormHandler):
 
-    template = "login.html"
-    form = LoginForm
+    template = "signin.html"
+    form = SigninForm
 
     def get(self):
         ctx = {
-            "form": LoginForm()
+            "form": SigninForm()
         }
 
-        self.render_to_response("login.html", ctx)
+        self.render_to_response("signin.html", ctx)
 
     def is_valid(self, data):
         playername = data.get("playername", None)
         password = data.get("password", None)
 
-        # login
-        self.login(playername=playername, password=password)
+        # signin
+        self.signin(playername=playername, password=password)
 
 
-class RegisterHandler(SuccessRequireFormHandler):
+class SignupHandler(SuccessRequireFormHandler):
     """
-        Register And Login Form Handler
+        Signup And Signin Form Handler
     """
-    template = "register.html"
-    form = RegisterForm
+    template = "signup.html"
+    form = SignupForm
 
     def get(self):
         ctx = {
-            "form": RegisterForm()
+            "form": SignupForm()
         }
-        self.render_to_response("register.html", ctx)
+        self.render_to_response("signup.html", ctx)
 
     def is_valid(self, data):
         playername = data.get("playername", None)
         password = data.get("password", None)
+        email = data.get("email", None)
 
-        # login
-        self.login(playername=playername, password=password)
+        # New save player
+        player = Player(playername=playername)
+        player.password = password
+        player.email = email
+        player.save()
+
+        # create profile
+        player.profile_set.create()
+
+        # signin
+        self.signin(playername=playername, password=password)
         
 
-class LogoutHandler(LoginRequireHandler):
+class LogoutHandler(SigninRequireHandler):
     def get(self):
         self.clear_cookie("player")
-        self.redirect("/login/")
+        self.redirect("/signin/")

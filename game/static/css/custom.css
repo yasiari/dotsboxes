@@ -8,35 +8,43 @@ body { font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-
 /*
 * HEADER BASE STYLE 
 */
-#Header { min-height:100px; }
+#Header { }
+
+
+.logo-mogo { width:150px; margin:25px; float:left; }
+.logo-mogo img { width:150px; }
 
 
 /*
 * SURFACE BASE STYLE 
 */
-#Surface { width: 1024px; min-height:500px; margin:auto; }
+#Surface { width: 1024px; min-height:300px; margin:auto; }
 
 ul.form { overflow:hidden; }
 ul.form li { margin:0 0 10px 0; }
 ul.form li label { display:block; }
 ul.form li input { }
 
-div.account { width:725px; margin:0px auto; }
-div.account ul.form { }
-div.account ul.form li { width:300px; float:left; margin:0 0 0 5px; }
+div.account { width:515px; margin:0px auto; overflow:hidden; }
+div.account ul.form { margin:0px 0 0 0; }
+div.account ul.form li { width:300px; margin:10px 0 0 0px; }
 div.account ul.form li label { margin:0 0 5px 0;  font-size:13px; display:none; }
 ul.form li input { border-radius:0px!important; }
 div.account ul.form li.button { width:75px; }
-div.account ul.form a { border-radius:0px!important; display:block; float:left; margin:3px 0 0 5px; font-size:23px; }
+div.account ul.form a { border-radius:0px!important; display:block; float:right; margin:3px 0 0 5px; font-size:23px; }
 
-div.register { width:310px; }
-div.register ul.form { }
-div.register ul.form li { float:none; }
+div.signup ul.form { }
+div.signup ul.form li { float:none; }
+
+.account.signin , .account.signup { margin-top:50px; }
+#SigninForm, #Signupform { float:left; border-top:1px solid #ddd; margin:48px 0 0 0 ; }
+#SigninForm h1.title , #signupForm h1.title { text-align:center; }
+
+div.signup .errorlist, div.signin .errorlist { font-size:12px; color:rgb(189, 54, 54); margin:10px 0 1px 1px; }
 
 
-div.register .errorlist { font-size:13px; color:red; font-weight:bold; margin:10px 0 1px 1px; }
-div.login .errorlist { position:absolute; font-size:13px; color:red; margin:-20px 0 0 0; font-weight:bold; }
-
+a.signup { font-size:12px!important; color:rgb(30, 130, 196);  float:left!important; margin-top:10px!important; } 
+a.signup:hover { text-decoration:underline; }
 
 /*
 *
@@ -46,9 +54,9 @@ div.login .errorlist { position:absolute; font-size:13px; color:red; margin:-20p
 
 /*
 *
-* Login
+* Signin
 */
-#LoginPage #Surface { }
+#SigninPage #Surface { }
 
 
 /*

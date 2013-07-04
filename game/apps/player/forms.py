@@ -2,12 +2,11 @@
 
 from django import forms
 from django.forms.util import ErrorList
-from apps.player.models import Player
 from apps.player import authenticate
+from apps.player.models import Player
 from apps.core.utils import get_or_None
 
 class AccountBaseForm(forms.Form):
-
     playername = forms.CharField(label="Player", max_length=30)
     password = forms.CharField(label="Password", widget=forms.PasswordInput(), max_length=128, min_length=6)
 
@@ -16,10 +15,10 @@ class AccountBaseForm(forms.Form):
         # PlaceHolder
         for field_name in self.fields:
             field = self.fields.get(field_name)
-            field.widget.attrs = { 'placeholder': field.label }
+            field.widget.attrs = { 'placeholder': field.label, "autocomplete": "off" }
 
-
-class LoginForm(AccountBaseForm):
+class SigninForm(AccountBaseForm):
+    password = forms.CharField(label="Password", widget=forms.PasswordInput(), max_length=128)
 
     def clean(self):
         playername = self.cleaned_data.get('playername')
@@ -32,32 +31,19 @@ class LoginForm(AccountBaseForm):
 
         return self.cleaned_data
 
-
-class RegisterForm(AccountBaseForm):
+class SignupForm(AccountBaseForm):
     email = forms.EmailField(label="Email")
 
-    def clean(self):
-        playername = self.cleaned_data.get('playername')
-        password = self.cleaned_data.get('password')
+    def clean_email(self):
         email = self.cleaned_data.get("email")
+        player = get_or_None(Player, email=email)
+        if player:
+            raise forms.ValidationError("Player Email already")
+        return email
 
-        playername_exists = get_or_None(Player, playername=playername)
-        email_exists = get_or_None(Player, email=email)
-
-        if playername_exists:
-            self._errors['playername'] = ErrorList(["Player Name already"])
-
-        if email_exists:
-            self._errors["email"] = ErrorList(["Player Email already"])
-       
-        # New player
-        if playername_exists is None and email_exists is None:
-            player = Player(playername=playername)
-            player.password = password
-            player.email = email
-            player.save()
-
-            # create profile
-            player.profile_set.create()
-
-        return self.cleaned_data
+    def clean_playername(self):
+        playername = self.cleaned_data.get('playername')
+        player = get_or_None(Player, playername=playername)
+        if player:
+            raise forms.ValidationError("Player Name already")
+        return playername
