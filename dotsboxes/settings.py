@@ -38,12 +38,12 @@ DATABASES = {
 
 # APPLICATIONS
 INSTALLED_APPS = (
-    'apps.player',
+    'dotsboxes.apps.player',
 )
 
 CONTEXT_PROCESSORS = (
-    "apps.core.context_processors.core",
-    "apps.player.context_processors.player",
+    "dotsboxes.apps.core.context_processors.core",
+    "dotsboxes.apps.player.context_processors.player",
 )
 
 
@@ -53,6 +53,10 @@ STATUS_CODE_HTML = {
     "500": "500.html",
 }
 
+UI_MODULES = (
+    'dotsboxes.apps.core.ui_modules',
+    'dotsboxes.apps.player.ui_modules',  
+)
 
 
 # Settings locale

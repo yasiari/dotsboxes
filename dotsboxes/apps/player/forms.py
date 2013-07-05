@@ -2,9 +2,9 @@
 
 from django import forms
 from django.forms.util import ErrorList
-from apps.player import authenticate
-from apps.player.models import Player
-from apps.core.utils import get_or_None
+from dotsboxes.apps.player import authenticate
+from dotsboxes.apps.player.models import Player
+from dotsboxes.utils import get_or_None
 
 class AccountBaseForm(forms.Form):
     playername = forms.CharField(label="Player", max_length=30)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.base_handlers import GameRequestHandler, SigninRequireHandler
+from dotsboxes.utils.base_handlers import GameRequestHandler, SigninRequireHandler
 
 
 class IndexHandler(SigninRequireHandler):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.handlers import IndexHandler, CssUiHandler
-from apps.player.handlers import SigninHandler, SignupHandler, LogoutHandler
+from dotsboxes.apps.core.handlers import IndexHandler, CssUiHandler
+from dotsboxes.apps.player.handlers import SigninHandler, SignupHandler, LogoutHandler
 
 
 URLS = (

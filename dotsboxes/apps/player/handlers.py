@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*- 
 
-from apps.core.base_handlers import ( SuccessRequireHandler, SigninRequireHandler,
+from dotsboxes.utils.base_handlers import ( SuccessRequireHandler, SigninRequireHandler,
                                      SuccessRequireFormHandler)
-from apps.player.forms import SigninForm, SignupForm
-from apps.player.models import Player
+from dotsboxes.apps.player.forms import SigninForm, SignupForm
+from dotsboxes.apps.player.models import Player
 
 
 class SigninHandler(SuccessRequireFormHandler):

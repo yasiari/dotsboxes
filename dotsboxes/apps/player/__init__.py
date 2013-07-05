@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*- 
 
-from apps.player.models import Player
+from dotsboxes.apps.player.models import Player
 
 
 def authenticate(playername=None, password=None):

@@ -1,8 +1,34 @@
 # -*- coding: utf-8 -*- 
 
-from settings import TEMPLATE_PATH
+import re
+
+from tornado.web import UIModule
+from dotsboxes.settings import TEMPLATE_PATH, CONTEXT_PROCESSORS, UI_MODULES
 from tornado.template import Loader
 from django.utils.importlib import import_module
+
+
+def ui_modules():
+    modules = {}
+    for module_path in UI_MODULES:
+        _ui_modules = __import__(str(module_path), globals(), ['ui_modules'], -1)
+
+        try:
+            ui_modules = _ui_modules
+        except AttributeError:
+            # this app simply doesn't have a ui_modules.py file
+            continue
+
+        for name in [x for x in dir(ui_modules) if re.findall('[A-Z]\w+', x)]:
+            thing = getattr(ui_modules, name)
+            try:
+                if issubclass(thing, UIModule) and not name == "UIModule":
+                    modules[name] = thing
+            except TypeError:
+                # most likely a builtin class or something
+                pass
+
+    return (modules)
 
 
 def template_loader(template_name, ctx):
@@ -38,7 +64,6 @@ def request_context():
     """
         CONTEXT_PROCESSORS REQUEST
     """
-    from settings import CONTEXT_PROCESSORS
     context = {}
     for ctx_path in CONTEXT_PROCESSORS:
         fnc = import_by_path(ctx_path)()
