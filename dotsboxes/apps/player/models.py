@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*- 
 
-from gravatar import Gravatar
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.hashers import (check_password, make_password)
@@ -24,16 +23,22 @@ class Player(models.Model):
     def __unicode__(self):
         return u"%s" %(self.playername)
 
+    def get_profile(self):
+        try:
+            profile = self.profile_set.get()
+        except:
+            profile = None
+        else:
+            if profile is None:
+                self.profile_set.create()
+        return self.profile_set.get()
+
     def is_authenticated(self):
         """
             Always return True. This is a way to tell if the user has been
             authenticated in templates.
         """
         return True
-
-    def get_gravatar(self):
-        return Gravatar(self.email).thumb
-
 
     def check_password(self, password):
         return check_password(password, self.password)
@@ -43,7 +48,8 @@ class Player(models.Model):
 
     def save(self, *args, **kwargs):
         if self.pk is None:
-            self.password = make_password(self.password)
+            pass
+        self.password = make_password(self.password)
         super(Player, self).save(*args, **kwargs)
 
 

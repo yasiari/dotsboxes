@@ -41,7 +41,9 @@ ul.form li { margin:0 0 10px 0; }
 ul.form li label { display:block; }
 ul.form li input { }
 
-div.account { width:515px; margin:0px auto; overflow:hidden; padding:0px; }
+div.account,
+.player-edit{ width:515px; margin:0px auto; overflow:hidden; padding:0px; }
+
 div.account ul.form { margin:0px 0 0 0; }
 div.account ul.form li { width:300px; margin:10px 0 0 0px; }
 div.account ul.form li label { margin:0 0 5px 0;  font-size:13px; display:none; }
@@ -52,12 +54,23 @@ div.account ul.form a { border-radius:0px!important; display:block; float:right;
 div.signup ul.form { }
 div.signup ul.form li { float:none; }
 
-.account.signin , .account.signup { margin-top:50px; }
-#SigninForm, #Signupform { float:left; border-top:1px solid #ddd; margin:48px 0 0 0 ; }
-#SigninForm h1.title , #signupForm h1.title { text-align:center; }
+.account.signin, 
+.account.signup, 
+.account.player-edit { margin-top:50px; }
 
-div.signup .errorlist, div.signin .errorlist { font-size:12px; color:rgb(189, 54, 54); margin:10px 0 1px 1px; }
+#SigninForm, 
+#Signupform, 
+#PlayerEditForm { float:left; border-top:1px solid #ddd; margin:48px 0 0 0 ; }
 
+#SigninForm h1.title, 
+#signupForm h1.title, 
+#PlayerEditForm h1.title { text-align:center; }
+
+div.signup .errorlist, 
+div.signin .errorlist,
+div.player-edit .errorlist { font-size:12px; color:rgb(189, 54, 54); margin:10px 0 1px 1px; }
+
+div.statusok { color:rgb(81, 156, 194); font-size:13px; text-align:center; margin-top:10px; }
 
 a.signup { font-size:12px!important; color:rgb(30, 130, 196);  float:left!important; margin-top:10px!important; } 
 a.signup:hover { text-decoration:underline; }
@@ -78,7 +91,9 @@ a.signup:hover { text-decoration:underline; }
 
 #IndexPage body { padding:40px 0 0 0; }
 
-#OnlinePlayers, #OnlineGames { border-top:1px solid #ddd; margin-top:30px; width:300px; }
+#OnlinePlayers, 
+#OnlineGames { border-top:1px solid #ddd; margin-top:30px; width:300px; }
+
 #OnlinePlayers { float:left; } 
 #OnlinePlayers h1 { text-align:center; margin-top:-13px; }
 #OnlinePlayers h1 span { font-size:20px; }

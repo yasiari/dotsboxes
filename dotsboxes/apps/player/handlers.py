@@ -1,43 +1,23 @@
 # -*- coding: utf-8 -*- 
 
 from dotsboxes.utils.base_handlers import ( SuccessRequireHandler, SigninRequireHandler,
-                                     SuccessRequireFormHandler)
-from dotsboxes.apps.player.forms import SigninForm, SignupForm
+                                            SuccessRequireFormHandler, SigninRequireFormHandler )
+from dotsboxes.apps.player.forms import SigninForm, SignupForm, PlayerEditForm
 from dotsboxes.apps.player.models import Player
 
 
 class SigninHandler(SuccessRequireFormHandler):
-
     template = "signin.html"
     form = SigninForm
-
-    def get(self):
-        ctx = {
-            "form": SigninForm()
-        }
-
-        self.render_to_response("signin.html", ctx)
 
     def is_valid(self, data):
         playername = data.get("playername", None)
         password = data.get("password", None)
-
-        # signin
         self.signin(playername=playername, password=password)
 
-
 class SignupHandler(SuccessRequireFormHandler):
-    """
-        Signup And Signin Form Handler
-    """
     template = "signup.html"
     form = SignupForm
-
-    def get(self):
-        ctx = {
-            "form": SignupForm()
-        }
-        self.render_to_response("signup.html", ctx)
 
     def is_valid(self, data):
         playername = data.get("playername", None)
@@ -50,12 +30,38 @@ class SignupHandler(SuccessRequireFormHandler):
         player.email = email
         player.save()
 
-        # create profile
+        # create profile and login
         player.profile_set.create()
+        self.signin(playername=playername, password=password, redirect_page="/player/edit/")
 
-        # signin
-        self.signin(playername=playername, password=password)
-        
+class PlayerEditHandler(SigninRequireFormHandler):
+    template = "player_edit.html"
+    form = PlayerEditForm
+
+    def initial(self):
+        player = self.get_current_player()
+        profile = player.get_profile()
+        return {
+            "playername": player.playername,
+            "first_name": profile.first_name,
+            "last_name": profile.last_name,
+            "email" : player.email
+        }
+
+    def is_valid(self, data):
+        player = self.get_current_player()
+        profile = player.get_profile()
+       
+        if bool(data.get("password")):
+            player.password = data.get("password")
+        player.email = data.get("email")
+        player.save()
+
+        profile.first_name = data.get("first_name")
+        profile.last_name = data.get("last_name")
+        profile.save()
+
+        self.redirect("/player/edit/?status=ok")
 
 class LogoutHandler(SigninRequireHandler):
     def get(self):

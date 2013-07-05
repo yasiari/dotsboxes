@@ -3,7 +3,8 @@
 from tornado.web import RequestHandler, ErrorHandler, HTTPError
 from dotsboxes.settings import STATUS_CODE_HTML
 from dotsboxes.apps.player import authenticate
-from dotsboxes.utils import request_context, request_data_field, template_loader
+from dotsboxes.utils import ( request_context, request_data_field, template_loader,
+                              get_or_None )
 from dotsboxes.apps.player.models import Player
 
 
@@ -16,15 +17,12 @@ class GameRequestHandler(RequestHandler):
     """
     def write_error(self, status_code, **kwargs):
         if self.settings.get("debug") is False:
-
             ctx = {
                 "status_code": status_code,
                 "message": self._reason,
             }
-            
             template = template_loader(STATUS_CODE_HTML.get(str(status_code)), ctx)
             self.finish(template)
-        
         else:
             super(GameRequestHandler, self).write_error(status_code, **kwargs)
 
@@ -49,7 +47,7 @@ class GameRequestHandler(RequestHandler):
     def get_current_player(self):
         playername = self.get_secure_cookie("player")
         if playername:
-            player = Player.objects.get(playername=playername)
+            player = get_or_None(Player, playername=playername)
             return player
         return None
 
@@ -60,7 +58,6 @@ class RequestErrorHandler(ErrorHandler, GameRequestHandler):
             ctx = {
                 "status_code": self._status_code
             }
-
             self.render_to_response(STATUS_CODE_HTML.get(str(self._status_code)), ctx)
         else:
             # debug true  
@@ -74,17 +71,27 @@ class BaseFormHandler(GameRequestHandler):
     form = None
     template = None
 
+    def initial(self):
+        return {}
+
+    def context(self):
+        return {}
+
+    def get(self):
+        ctx = {
+            "form": self.form(initial=self.initial())
+        }
+        ctx.update(self.context())
+        self.render_to_response(self.template, ctx)
+
     def is_valid(self):
         pass
 
     def post(self):
         data = request_data_field(self.request, self.form)
-
         ctx = {}
         form = self.form(data=data)
-        
         if form.is_valid():
-
             self.is_valid(data)
         else:
             ctx["form"] = form

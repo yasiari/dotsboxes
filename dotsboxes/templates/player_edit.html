@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block htmlid %}PlayerEdit{% end %}
+
+{% block Surface %}
+    <div class="account player-edit">
+        <div class="logo-mogo">
+            <img src="/static/img/logo.png">
+        </div>
+        <form id="PlayerEditForm" action="." method="POST">
+            <h1 class="title">
+                <span>Player Edit</span>
+            </h1>
+
+            {% if request.arguments.get("status") %} 
+                <div class="statusok">Successfully Updated.</div>
+            {% end %}
+            <ul class="form">
+                {{ form.as_ul() }}
+                <a href="#buttons" class="smallbtn4" id="PlayerEditButton">Update</a>
+            </ul>
+        </form>
+    </div>
+{% end %}

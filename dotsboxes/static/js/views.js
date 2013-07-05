@@ -56,6 +56,29 @@
         }
     });
 
+    APP.Views.PlayerEditView = Backbone.View.extend({
+        el: "#PlayerEditPage",
+        events: {
+        
+            "click #PlayerEditButton": "edit"
+        },
+
+        initialize: function() { this.render(); },
+
+        render: function() {
+            this.$el.find("#id_first_name").focus();
+        },
+
+        edit: function(e) {
+            e.preventDefault();
+            var $this = jQuery(e.currentTarget);
+            var playereditForm = jQuery("#PlayerEditForm");
+            
+            // submit form
+            playereditForm.submit();
+        }
+    });
+
     APP.Views.GameView = Backbone.View.extend({
         el: "#GamePage",
         
