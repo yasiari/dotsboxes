@@ -64,7 +64,7 @@ class PlayerEditForm(AccountBaseForm):
         email = self.cleaned_data.get("email")
         player = get_or_None(Player, email=email)
         if player and not player.playername == playername:
-            raise forms.ValidationError("Player Name already")
+            raise forms.ValidationError("Player Email already")
         return email
         
 
