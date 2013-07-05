@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*- 
 
+from gravatar import Gravatar
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.hashers import (check_password, make_password)
+
 
 class Player(models.Model):
     """
@@ -28,6 +30,10 @@ class Player(models.Model):
             authenticated in templates.
         """
         return True
+
+    def get_gravatar(self):
+        return Gravatar(self.email).thumb
+
 
     def check_password(self, password):
         return check_password(password, self.password)

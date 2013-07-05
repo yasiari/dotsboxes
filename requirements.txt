@@ -2,3 +2,4 @@
 Django==1.5.1
 tornado
 psycopg2
+pyGravatar
