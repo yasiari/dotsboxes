@@ -1,6 +1,24 @@
 {% extends "base.html" %}
 
+{% block htmlid %}Index{% end %}
+
 {% block Surface %}
-    <div id="Game"></div>
-    <div id="Scores"></div>
+
+    <script type="text/template" id="OnlinePlayerTemplate">
+        <li class="player" data-playername="<%= playername %>">
+            <span class="avatar"></div>
+
+            <span class="playername">
+                <%= playername %>
+            </span>
+        </li>
+    </script>
+
+    <div id="OnlinePlayers">
+        <h1 class="title">
+            <span>Online Players</span>
+        </h1>
+
+        <ul class="playerlist"></ul>
+    </div>
 {% end %}

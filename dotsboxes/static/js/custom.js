@@ -10,11 +10,14 @@ jQuery(function() {
         // METHODS
 
     }).Is("*", function(pagename, methods) {
-    
+   
+
+        // OnlinePlayers     
+        new APP.Views.OnlinePlayersView();
 
     }) ("IndexPage", function(pagename, methods) { 
-    
-    
+
+        
     }) ("SigninPage", function(pagename, methods) {
     
         // Backbone SigninView

@@ -15,6 +15,7 @@
         
             "click #SigninButton": "signin"
         },
+
         initialize: function() { this.render(); },
 
         render: function() {
@@ -53,6 +54,39 @@
             // submit form
             signupForm.submit();
         }
+    });
 
+    APP.Views.GameView = Backbone.View.extend({
+        el: "#GamePage",
+        
+        events: {},
+        initialize: function() {},
+    });
+
+    APP.Views.IndexView = Backbone.View.extend({
+        el: "#IndexPage",
+
+        events: {},
+        initialize: function() {},
+    });
+
+
+    APP.Views.OnlinePlayersView = Backbone.View.extend({
+        el: "#OnlinePlayers",
+
+        events: {},
+
+        initialize: function() {
+        
+            if (this.$el[0]) {
+            
+                this.render();   
+            }
+        },
+
+        render: function() {
+                
+            console.log("dwds");                 
+        }
     });
 }).call(this);

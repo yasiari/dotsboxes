@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*- 
 
-def core():
-    return {}
+from dotsboxes.apps.player.models import AnonymousPlayer
+
+def core(handler_self):
+    context = {}
+    return context

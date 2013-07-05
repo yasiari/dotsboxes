@@ -60,13 +60,13 @@ def request_data_field(request, form=None):
     return data
 
 
-def request_context():
+def request_context(handler_self):
     """
         CONTEXT_PROCESSORS REQUEST
     """
     context = {}
     for ctx_path in CONTEXT_PROCESSORS:
-        fnc = import_by_path(ctx_path)()
+        fnc = import_by_path(ctx_path)(handler_self)
         context.update(fnc)
     return context
 

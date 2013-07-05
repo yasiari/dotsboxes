@@ -22,6 +22,13 @@ class Player(models.Model):
     def __unicode__(self):
         return u"%s" %(self.playername)
 
+    def is_authenticated(self):
+        """
+            Always return True. This is a way to tell if the user has been
+            authenticated in templates.
+        """
+        return True
+
     def check_password(self, password):
         return check_password(password, self.password)
 
@@ -32,6 +39,7 @@ class Player(models.Model):
         if self.pk is None:
             self.password = make_password(self.password)
         super(Player, self).save(*args, **kwargs)
+
 
 class Profile(models.Model):
     player = models.ForeignKey(Player)
@@ -44,3 +52,23 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return u"%s" %(self.first_name)
+
+
+class AnonymousPlayer(object):
+    """
+        AnonymousPlayer Player Model Base
+    """
+    id = None
+    pk = None
+    playername = ''
+    is_active = False
+
+    def __init__(self):
+        pass
+
+    def __str__(self):
+        return 'AnonymousPlayer'
+
+    def is_authenticated(self):
+        return False
+

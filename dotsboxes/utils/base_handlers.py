@@ -29,13 +29,13 @@ class GameRequestHandler(RequestHandler):
             super(GameRequestHandler, self).write_error(status_code, **kwargs)
 
     def render_to_response(self, template_name, context):
-        ctx = request_context()
+        ctx = request_context(self)
         context.update(ctx)
         self.render(template_name, **context)
 
     @property
     def is_authenticate(self):
-        return self.get_current_player()
+        return bool(self.get_current_player())
 
     def signin(self, playername=None, password=None, redirect_page="/"):
         auth = authenticate(playername=playername, password=password)
@@ -96,7 +96,7 @@ class SigninRequireHandler(GameRequestHandler):
         Signin Require Class Redirect not signin
     """
     def prepare(self):
-        if self.is_authenticate is None:
+        if self.is_authenticate is False:
             self.redirect("/signin/")
 
 
@@ -105,7 +105,7 @@ class SuccessRequireHandler(GameRequestHandler):
         Success Require Class Redirect not signin
     """
     def prepare(self):
-        if not self.is_authenticate is None:
+        if not self.is_authenticate is False:
             return self.redirect("/")
 
 

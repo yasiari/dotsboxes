@@ -3,13 +3,16 @@
 * linegame custom css style
 */
 
-body { font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
+body { padding:0px; margin:0px; font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
 
 /*
 * HEADER BASE STYLE 
 */
-#Header { }
+#Header { height:40px; position: fixed;top: 0;right: 0;left: 0;z-index: 1000;-webkit-box-shadow: 0 2px 3px rgba(0,0,0,.25);box-shadow: 0 2px 3px rgba(0,0,0,.25); background:#333;  }
 
+#Header .main { width:1024px; margin:auto; }
+#Header .main .logo-mogo { margin:auto; float:none; width:60px; }
+#Header .main .logo-mogo img { width:60px; }
 
 .logo-mogo { width:150px; margin:25px; float:left; }
 .logo-mogo img { width:150px; }
@@ -57,6 +60,16 @@ a.signup:hover { text-decoration:underline; }
 * Signin
 */
 #SigninPage #Surface { }
+
+
+
+#IndexPage body { padding:40px 0 0 0; }
+
+#OnlinePlayers, #OnlineGames { border-top:1px solid #ddd; margin-top:30px; width:300px; }
+#OnlinePlayers { float:left; } 
+#OnlinePlayers h1 { text-align:center; margin-top:-13px; }
+#OnlinePlayers h1 span { font-size:20px; }
+
 
 
 /*
