@@ -3,7 +3,20 @@
 * linegame custom css style
 */
 
-body { padding:0px; margin:0px; font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
+body { 
+    
+    padding:0px; margin:0px; font-family: "Helvetica Neue", Helvetica, sans-serif;color: #444;-webkit-font-smoothing: antialiased; background-color: #f6f6f6; }
+
+
+/* reset */
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+a { text-decoration: none; }
+div, form, ul, li, h1 { margin:0px; padding:0px; }
+
+
 
 /*
 * HEADER BASE STYLE 
@@ -28,7 +41,7 @@ ul.form li { margin:0 0 10px 0; }
 ul.form li label { display:block; }
 ul.form li input { }
 
-div.account { width:515px; margin:0px auto; overflow:hidden; }
+div.account { width:515px; margin:0px auto; overflow:hidden; padding:0px; }
 div.account ul.form { margin:0px 0 0 0; }
 div.account ul.form li { width:300px; margin:10px 0 0 0px; }
 div.account ul.form li label { margin:0 0 5px 0;  font-size:13px; display:none; }
